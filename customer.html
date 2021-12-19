@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>customer List</title>
+    <style>
+
+        table {
+            font-family: 'Arial';
+            margin: 25px auto;
+            border-collapse: collapse;
+            border: 1px solid #eee;
+            border-bottom: 2px solid #0cc;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.10), 0px 10px 20px rgba(0, 0, 0, 0.05), 0px 20px 20px rgba(0, 0, 0, 0.05), 0px 30px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        button {
+            background: red;
+            border: none;
+            color: white;
+            border-radius: 50%;
+
+        }
+
+        table tr:hover {
+            background: #f4f4f4;
+        }
+
+        table tr:hover td {
+            color: #555;
+        }
+
+        table th,
+        table td {
+            color: #999;
+            border: 1px solid #eee;
+            padding: 12px 35px;
+            border-collapse: collapse;
+        }
+
+        table th {
+            background: #0cc;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        table th.last {
+            border-right: none;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>email</th>
+                <th>accepts_marketing</th>
+                <th>created_at</th>
+                <th>updated_at</th>
+                <th>first_name</th>
+                <th>last_name</th>
+                <th>orders_count</th>
+                <th>state</th>
+                <th>total_spent</th>
+                <th>last_order_id</th>
+                <th>note</th>
+                <th>verified_email</th>
+                <th>multipass_identifier</th>
+                <th>tax_exempt</th>
+                <th>phone</th>
+                <th>tags</th>
+                <th>last_order_name</th>
+                <th>currency</th>
+                <th>addresses</th>
+                <th>accepts_marketing_updated_at</th>
+                <th>marketing_opt_in_level</th>
+                <th>tax_exemptions</th>
+                <th>admin_graphql_api_id</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <script>
+        function Reload() {
+
+            fetch("http://localhost:3333/lipt/customer/insert").then(data => data.json())
+                .then(data => {
+                    console.log(data);
+                    var thead = document.querySelector("tbody");
+                    thead.innerHTML = "";
+                    for (let i = 0; i < data.length; i++) {
+                        var tr = document.createElement("tr");
+                        thead.appendChild(tr);
+                        var object = data[i]
+                        for (const property in object) {
+                            let td = document.createElement('td');
+                            td.innerHTML = object[property];
+                            tr.appendChild(td);
+                        }
+                    }
+                })
+        }
+        Reload();
+    </script>
+</body>
+
+</html>

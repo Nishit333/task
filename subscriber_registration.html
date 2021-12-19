@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container">
+        <div class="msg"></div>
+        <div class="title">Subscriber Registration</div>
+        <div class="content">
+            <form id="myForm">
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">Full Name</span>
+                        <input type="text" placeholder="Enter your name" name="name" required>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="details">Email</span>
+                        <input type="text" placeholder="Enter your email" name="email" required>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="details">Phone Number</span>
+                        <input type="text" placeholder="Enter your number" name="mobile_number" required>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="details">Gender</span>
+                        <input type="text" placeholder="Enter your gender" name="gender" required>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="details">Address Line 1</span>
+                        <input type="text" placeholder="Enter your Address" name="address_line1" required>
+                    </div>
+
+
+                    <div class="input-box">
+                        <span class="details">Address Line 2</span>
+                        <input type="text" placeholder="Enter your Address" name="address_line2" required>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="details">City</span>
+                        <input type="text" placeholder="Enter your City" name="city" required>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="details">State</span>
+                        <input type="text" placeholder="Enter your State" name="state" required>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="details">ZipCode</span>
+                        <input type="text" placeholder="Enter your ZipCode" name="zipcode" required>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="details">Country</span>
+                        <input type="text" placeholder="Enter your Country" name="country" required>
+                    </div>
+                </div>
+                <div class="button">
+                    <button type="submit" value="Register">Register</button>
+                </div>
+            </form>
+            <div class="button">
+                <a href="subscriber_user_list.html" value="SeeAllUsers">See All Users</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        myForm.onsubmit = async (e) => {
+            e.preventDefault();
+            var form = document.querySelector("#myForm");
+            var zipcode=+form.querySelector('input[name="zipcode"]').value;
+            var mobNum=+form.querySelector('input[name="mobile_number"]').value;
+            data = {
+                name: form.querySelector('input[name="name"]').value,
+                gender: form.querySelector('input[name="gender"]').value,
+                email_address: form.querySelector('input[name="email"]').value,
+                mobile_number: mobNum ,
+                address_line1: form.querySelector('input[name="address_line1"]').value,
+                address_line2: form.querySelector('input[name="address_line2"]').value,
+                state: form.querySelector('input[name="state"]').value,
+                city: form.querySelector('input[name="city"]').value,
+                zipcode: zipcode,
+                country: form.querySelector('input[name="country"]').value,
+            }
+
+            let response = await fetch('http://localhost:3333/lipt/Subscriber/upsert', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+
+            let text = JSON.parse(await response.text());
+            alert(text.message);
+            var inp = document.querySelectorAll("input");
+            for (let i = 0; i < inp.length; i++) {
+                inp[i].value = ""
+            }
+        };
+    </script>
+
+</body>
+
+</html>

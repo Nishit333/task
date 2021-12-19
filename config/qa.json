@@ -1,0 +1,20 @@
+{
+    "port": 3333,
+    "app": {
+        "name": "task"
+    },
+    "database": {
+        "server": "SERVER NAME",
+        "port": "SERVER PORT NUMBER",
+        "user": "SERVER USER NAME",
+        "password": "SERVER PASSWORD",
+        "database": "SERVER DATABASE NAME",
+        "timeout": 5000,
+        "options": {
+            "trustedconnection": true,
+            "debug": false,
+            "enableArithAbort": true,
+            "encrypt": false
+        }
+    }
+}

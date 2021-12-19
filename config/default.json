@@ -1,0 +1,19 @@
+{
+    "port": 3333,
+    "app": {
+        "name": "task"
+    },
+    "database": {
+        "server": "127.0.0.1",
+        "user": "sa",
+        "password": "Admin@123",
+        "database": "lucent_innovation_practical_task",
+        "timeout": 5000,
+        "options": {
+            "trustedconnection": true,
+            "debug": false,
+            "enableArithAbort": true,
+            "encrypt": false
+        }
+    }
+}
